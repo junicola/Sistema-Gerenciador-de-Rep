@@ -3,23 +3,25 @@ package model;
  *
  * @author JuliaNicolaGualeve
  */
-public class Usuario {
-    private int id;
+public class User {
     private String name;
     private String email;
     private String phone;
-    private int rg;
+    private String rg;
     private String Password;
-    private int userType;
 
-    public int getId() {
-        return id;
+    public User() {
+    }
+    
+    public User(String email, String nome, String password, String rg, String tel) {
+        this.email = email;
+        this.name = nome;
+        this.Password = password;
+        this.rg = rg;
+        this.phone = tel;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    
     public String getName() {
         return name;
     }
@@ -44,11 +46,11 @@ public class Usuario {
         this.phone = phone;
     }
 
-    public int getRg() {
+    public String getRg() {
         return rg;
     }
 
-    public void setRg(int rg) {
+    public void setRg(String rg) {
         this.rg = rg;
     }
 
@@ -58,15 +60,6 @@ public class Usuario {
 
     public void setPassword(String Password) {
         this.Password = Password;
-    }
-
-    public int getUserType() {
-        return userType;
-    }
-
-    public void setUserType(int userType) {
-        this.userType = userType;
-    }   
-      
+    } 
     
 }

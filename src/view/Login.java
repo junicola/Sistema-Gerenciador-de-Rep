@@ -26,8 +26,8 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btnEntrar = new javax.swing.JButton();
-        opcSair = new javax.swing.JLabel();
+        btnEnter = new javax.swing.JButton();
+        lblExit = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,6 +47,7 @@ public class Login extends javax.swing.JFrame {
         txtPassword.setForeground(new java.awt.Color(102, 102, 102));
         txtPassword.setToolTipText("");
         txtPassword.setBorder(null);
+        txtPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         jSeparator1.setMinimumSize(new java.awt.Dimension(50, 5));
         jSeparator1.setPreferredSize(new java.awt.Dimension(50, 5));
@@ -63,22 +64,22 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Gerenciador");
 
-        btnEntrar.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        btnEntrar.setText("Entrar");
-        btnEntrar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+        btnEnter.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        btnEnter.setText("Entrar");
+        btnEnter.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEnter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEntrarActionPerformed(evt);
+                btnEnterActionPerformed(evt);
             }
         });
 
-        opcSair.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
-        opcSair.setForeground(new java.awt.Color(51, 51, 51));
-        opcSair.setText("Sair");
-        opcSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        opcSair.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblExit.setFont(new java.awt.Font("Century Gothic", 2, 14)); // NOI18N
+        lblExit.setForeground(new java.awt.Color(51, 51, 51));
+        lblExit.setText("Sair");
+        lblExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                opcSairMouseClicked(evt);
+                lblExitMouseClicked(evt);
             }
         });
 
@@ -102,10 +103,10 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(opcSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
-                        .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnEnter, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(153, 153, 153))
         );
@@ -133,8 +134,8 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnEntrar)
-                            .addComponent(opcSair))))
+                            .addComponent(btnEnter)
+                            .addComponent(lblExit))))
                 .addGap(54, 54, 54))
         );
 
@@ -152,23 +153,23 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+    private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
         String user = txtUser.getText();
         String password = txtPassword.getText();
         Main main = new Main();
         LoginController login = new LoginController(password, user);
-        if(login.validate() == true && user != null && password != null) { 
+        if (login.validate() == true && user != null && password != null) {
             this.dispose();
             main.setVisible(true);
-            
+
         } else {
             JOptionPane.showMessageDialog(null, "User ou senha incorretos", "Erro no login", JOptionPane.ERROR_MESSAGE);
-        }       
-    }//GEN-LAST:event_btnEntrarActionPerformed
+        }
+    }//GEN-LAST:event_btnEnterActionPerformed
 
-    private void opcSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcSairMouseClicked
+    private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked
         System.exit(0);
-    }//GEN-LAST:event_opcSairMouseClicked
+    }//GEN-LAST:event_lblExitMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -204,7 +205,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEntrar;
+    private javax.swing.JButton btnEnter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -212,7 +213,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JLabel opcSair;
+    private javax.swing.JLabel lblExit;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables

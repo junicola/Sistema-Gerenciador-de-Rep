@@ -4,6 +4,6 @@ package model;
  *
  * @author JuliaNicolaGualeve
  */
-public class Atividade {
+public class Bill {
     
 }

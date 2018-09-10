@@ -60,11 +60,11 @@
                       <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="opcSair" max="32767" attributes="0"/>
+                              <Component id="lblExit" max="32767" attributes="0"/>
                               <Component id="jSeparator3" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace pref="162" max="32767" attributes="0"/>
-                          <Component id="btnEntrar" min="-2" pref="75" max="-2" attributes="0"/>
+                          <Component id="btnEnter" min="-2" pref="75" max="-2" attributes="0"/>
                       </Group>
                       <Component id="txtPassword" alignment="0" min="-2" pref="245" max="-2" attributes="0"/>
                   </Group>
@@ -97,8 +97,8 @@
                           <Component id="jSeparator2" min="-2" pref="12" max="-2" attributes="0"/>
                           <EmptySpace pref="60" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btnEntrar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="opcSair" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnEnter" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblExit" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -144,6 +144,9 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
+            </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Texto"/>
             </Property>
           </Properties>
         </Component>
@@ -192,7 +195,7 @@
             <Property name="text" type="java.lang.String" value="Gerenciador"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnEntrar">
+        <Component class="javax.swing.JButton" name="btnEnter">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century Gothic" size="14" style="0"/>
@@ -205,10 +208,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEntrarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEnterActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="opcSair">
+        <Component class="javax.swing.JLabel" name="lblExit">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Century Gothic" size="14" style="2"/>
@@ -222,7 +225,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="opcSairMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblExitMouseClicked"/>
           </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator3">
