@@ -15,7 +15,7 @@ import model.User;
 public class LoginController {
     String password;
     String user;
-    File file = new File("C:\\Users\\JuliaNicolaGualeve\\Desktop\\UTFPR\\Semestre_5\\Desktop\\GerenciadorDeRep\\Users.txt");
+    File file = new File("C:\\Users\\JuliaNicolaGualeve\\Desktop\\ProjetoDesktop\\Users.txt");
 
     public LoginController(String password, String user) {
         this.password = password;

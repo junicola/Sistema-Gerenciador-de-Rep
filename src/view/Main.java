@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import model.Bill;
 import model.User;
 
 /**
@@ -19,24 +20,11 @@ import model.User;
  */
 public class Main extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Main
-     */
     public Main() {
         initComponents();
         loadTableUser();
+        loadTableBill();
 
-    }
-
-    public void loadTableUser() {
-        DefaultTableModel dtb = (DefaultTableModel) tbUser.getModel();
-        dtb.setNumRows(0);
-        MainController main = new MainController();
-        ArrayList<User> dados = main.getData();
-
-        for (User u : dados) {
-            dtb.addRow(new Object[]{u.getEmail(), u.getName(), u.getRg(), u.getPhone()});
-        }
     }
 
     @SuppressWarnings("unchecked")
@@ -60,8 +48,18 @@ public class Main extends javax.swing.JFrame {
         btnEditUser = new javax.swing.JButton();
         jPanelBill = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbBill = new javax.swing.JTable();
+        btnAddBill = new javax.swing.JButton();
+        btnRemoveBill = new javax.swing.JButton();
+        btnEditBill = new javax.swing.JButton();
         jPanelAct = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tbAct = new javax.swing.JTable();
+        btnAddAct = new javax.swing.JButton();
+        btnRemoveAct = new javax.swing.JButton();
+        btnEditAct = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
@@ -134,6 +132,7 @@ public class Main extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Usuários");
 
+        tbUser.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         tbUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -221,6 +220,50 @@ public class Main extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("Contas");
 
+        tbBill.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        tbBill.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "Valor", "Vencimento", "Responsável", "Status"
+            }
+        ));
+        jScrollPane2.setViewportView(tbBill);
+
+        btnAddBill.setBackground(new java.awt.Color(153, 153, 153));
+        btnAddBill.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        btnAddBill.setForeground(new java.awt.Color(51, 51, 51));
+        btnAddBill.setText("Adicionar");
+        btnAddBill.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnAddBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddBillActionPerformed(evt);
+            }
+        });
+
+        btnRemoveBill.setBackground(new java.awt.Color(153, 153, 153));
+        btnRemoveBill.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        btnRemoveBill.setForeground(new java.awt.Color(51, 51, 51));
+        btnRemoveBill.setText("Excluir");
+        btnRemoveBill.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnRemoveBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoveBillActionPerformed(evt);
+            }
+        });
+
+        btnEditBill.setBackground(new java.awt.Color(153, 153, 153));
+        btnEditBill.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        btnEditBill.setForeground(new java.awt.Color(51, 51, 51));
+        btnEditBill.setText("Alterar");
+        btnEditBill.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEditBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditBillActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelBillLayout = new javax.swing.GroupLayout(jPanelBill);
         jPanelBill.setLayout(jPanelBillLayout);
         jPanelBillLayout.setHorizontalGroup(
@@ -228,14 +271,32 @@ public class Main extends javax.swing.JFrame {
             .addGroup(jPanelBillLayout.createSequentialGroup()
                 .addGap(244, 244, 244)
                 .addComponent(jLabel6)
-                .addContainerGap(268, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBillLayout.createSequentialGroup()
+                .addContainerGap(71, Short.MAX_VALUE)
+                .addGroup(jPanelBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelBillLayout.createSequentialGroup()
+                        .addComponent(btnAddBill, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnRemoveBill, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEditBill, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52))
         );
         jPanelBillLayout.setVerticalGroup(
             jPanelBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBillLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel6)
-                .addContainerGap(304, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(jPanelBillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddBill)
+                    .addComponent(btnRemoveBill)
+                    .addComponent(btnEditBill))
+                .addGap(39, 39, 39))
         );
 
         painelCard.add(jPanelBill, "billCard");
@@ -246,6 +307,35 @@ public class Main extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setText("Atividades");
 
+        tbAct.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        tbAct.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "Inicio", "Fim", "Responsável", "Status"
+            }
+        ));
+        jScrollPane3.setViewportView(tbAct);
+
+        btnAddAct.setBackground(new java.awt.Color(153, 153, 153));
+        btnAddAct.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        btnAddAct.setForeground(new java.awt.Color(51, 51, 51));
+        btnAddAct.setText("Adicionar");
+        btnAddAct.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        btnRemoveAct.setBackground(new java.awt.Color(153, 153, 153));
+        btnRemoveAct.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        btnRemoveAct.setForeground(new java.awt.Color(51, 51, 51));
+        btnRemoveAct.setText("Excluir");
+        btnRemoveAct.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        btnEditAct.setBackground(new java.awt.Color(153, 153, 153));
+        btnEditAct.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        btnEditAct.setForeground(new java.awt.Color(51, 51, 51));
+        btnEditAct.setText("Alterar");
+        btnEditAct.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
         javax.swing.GroupLayout jPanelActLayout = new javax.swing.GroupLayout(jPanelAct);
         jPanelAct.setLayout(jPanelActLayout);
         jPanelActLayout.setHorizontalGroup(
@@ -254,13 +344,31 @@ public class Main extends javax.swing.JFrame {
                 .addGap(237, 237, 237)
                 .addComponent(jLabel7)
                 .addContainerGap(245, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelActLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelActLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelActLayout.createSequentialGroup()
+                        .addComponent(btnAddAct, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRemoveAct, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEditAct, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57))
         );
         jPanelActLayout.setVerticalGroup(
             jPanelActLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelActLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLabel7)
-                .addContainerGap(306, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(jPanelActLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAddAct)
+                    .addComponent(btnRemoveAct)
+                    .addComponent(btnEditAct))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         painelCard.add(jPanelAct, "actCard");
@@ -306,6 +414,17 @@ public class Main extends javax.swing.JFrame {
         CardLayout c1 = (CardLayout) (painelCard.getLayout());
         c1.show(painelCard, "actCard");
     }//GEN-LAST:event_lblActMouseClicked
+    //User Panel
+    public void loadTableUser() {
+        DefaultTableModel dtb = (DefaultTableModel) tbUser.getModel();
+        dtb.setNumRows(0);
+        MainController main = new MainController();
+        ArrayList<User> dados = main.getDataUsers();
+
+        for (User u : dados) {
+            dtb.addRow(new Object[]{u.getEmail(), u.getName(), u.getRg(), u.getPhone()});
+        }
+    }
 
     private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
         AddUser add = new AddUser(this);
@@ -326,7 +445,6 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoveUserActionPerformed
 
     private void btnEditUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditUserActionPerformed
-        // TODO add your handling code here:
         MainController main = new MainController();
         int row = tbUser.getSelectedRow();
         if (row < 0) {
@@ -336,11 +454,48 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEditUserActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    //Bill panel
+    public void loadTableBill() {
+        DefaultTableModel dtb = (DefaultTableModel) tbBill.getModel();
+        dtb.setNumRows(0);
+        MainController main = new MainController();
+        ArrayList<Bill> dados = main.getDataBills();
+
+        for (Bill b : dados) {
+            dtb.addRow(new Object[]{b.getName(), b.getValue(), b.getExpDate(), b.getUserName(), b.getStatus()});
+        }
+    }
+
+    private void btnAddBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBillActionPerformed
+        AddBill add = new AddBill(this);
+        add.setVisible(true);
+        loadTableBill();
+    }//GEN-LAST:event_btnAddBillActionPerformed
+
+    private void btnRemoveBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveBillActionPerformed
+        MainController main = new MainController();
+        int row = tbBill.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "Selecione um registro para remover", "Erro ao remover Usuario", JOptionPane.ERROR_MESSAGE);
+        } else {
+            main.removeBill(tbBill.getValueAt(row, 0).toString());
+            JOptionPane.showMessageDialog(null, "Conta removida com sucesso", "Remover Conta", JOptionPane.INFORMATION_MESSAGE);
+            loadTableBill();
+        }
+    }//GEN-LAST:event_btnRemoveBillActionPerformed
+
+    private void btnEditBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditBillActionPerformed
+        MainController main = new MainController();
+        int row = tbBill.getSelectedRow();
+        if (row < 0) {
+            JOptionPane.showMessageDialog(null, "Selecione um registro para editar", "Erro ao editar Usuario", JOptionPane.ERROR_MESSAGE);
+        } else {
+            main.editBill(tbBill.getValueAt(row, 0).toString(), this);
+        }
+    }//GEN-LAST:event_btnEditBillActionPerformed
+
+    
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -372,8 +527,14 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddAct;
+    private javax.swing.JButton btnAddBill;
     private javax.swing.JButton btnAddUser;
+    private javax.swing.JButton btnEditAct;
+    private javax.swing.JButton btnEditBill;
     private javax.swing.JButton btnEditUser;
+    private javax.swing.JButton btnRemoveAct;
+    private javax.swing.JButton btnRemoveBill;
     private javax.swing.JButton btnRemoveUser;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -383,6 +544,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelBill;
     private javax.swing.JPanel jPanelUser;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblAct;
@@ -390,6 +553,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel lblExit;
     private javax.swing.JLabel lblUser;
     private javax.swing.JPanel painelCard;
+    private javax.swing.JTable tbAct;
+    private javax.swing.JTable tbBill;
     private javax.swing.JTable tbUser;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,19 +4,20 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import model.User;
+import model.Bill;
 
 /**
  *
  * @author JuliaNicolaGualeve
  */
-public class AddUserController {
-    File file = new File("C:\\Users\\JuliaNicolaGualeve\\Desktop\\ProjetoDesktop\\Users.txt");
+public class AddBillController {
+
+    File file = new File("C:\\Users\\JuliaNicolaGualeve\\Desktop\\ProjetoDesktop\\Bills.txt");
     String str;
 
-    public boolean add(User u) {
+    public boolean add(Bill b) {
         str = "\r\n";
-        str += u.getEmail() + ";" + u.getName() + ";" + u.getPassword() + ";" + u.getRg() + ";" + u.getPhone();
+        str += b.getName() + ";" + b.getValue() + ";" + b.getExpDate() + ";" + b.getUserName() + ";" + b.getStatus();
 
         if (writeText(file, str)) {
             return true;
