@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/JuliaNicolaGualeve/Desktop/UTFPR/Semestre_5/Desktop/GerenciadorDeRep/src/model/User.java</file>
-            <file>file:/C:/Users/JuliaNicolaGualeve/Desktop/UTFPR/Semestre_5/Desktop/GerenciadorDeRep/src/view/Login.java</file>
-            <file>file:/C:/Users/JuliaNicolaGualeve/Desktop/UTFPR/Semestre_5/Desktop/GerenciadorDeRep/src/view/Main.java</file>
-            <file>file:/C:/Users/JuliaNicolaGualeve/Desktop/UTFPR/Semestre_5/Desktop/GerenciadorDeRep/src/control/LoginController.java</file>
-            <file>file:/C:/Users/JuliaNicolaGualeve/Desktop/UTFPR/Semestre_5/Desktop/GerenciadorDeRep/src/control/MainController.java</file>
+            <file>file:/C:/Users/JuliaNicolaGualeve/Desktop/repClone/Sistema-Gerenciador-de-Rep/src/DAO/PayBillDao.java</file>
+            <file>file:/C:/Users/JuliaNicolaGualeve/Desktop/repClone/Sistema-Gerenciador-de-Rep/src/DAO/BillDao.java</file>
+            <file>file:/C:/Users/JuliaNicolaGualeve/Desktop/repClone/Sistema-Gerenciador-de-Rep/src/control/AddBillController.java</file>
+            <file>file:/C:/Users/JuliaNicolaGualeve/Desktop/repClone/Sistema-Gerenciador-de-Rep/src/view/AddBill.java</file>
+            <file>file:/C:/Users/JuliaNicolaGualeve/Desktop/repClone/Sistema-Gerenciador-de-Rep/src/view/Main.java</file>
+            <file>file:/C:/Users/JuliaNicolaGualeve/Desktop/repClone/Sistema-Gerenciador-de-Rep/src/control/MainController.java</file>
         </group>
     </open-files>
 </project-private>

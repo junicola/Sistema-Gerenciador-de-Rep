@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,24 +8,32 @@ import java.util.Date;
  * @author JuliaNicolaGualeve
  */
 public class Bill {
-     private String name;
-    private String value;
-    private String expDate;
-    private String status;
-    private String userName;
+    private String name;
+    private Float value;
+    private Date expDate;
+    private int status;
+    private int id;
 
     public Bill(){
         
     }
 
-    public Bill(String name, String value, String expDate, String userName, String status) {
+    public Bill(String name, float value, Date expDate, int status) {
         this.name = name;
         this.value = value;
         this.expDate = expDate;
         this.status = status;
-        this.userName = userName;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
     public String getName() {
         return name;
     }
@@ -33,42 +42,28 @@ public class Bill {
         this.name = name;
     }
 
-    public String getValue() {
+    public Float getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(Float value) {
         this.value = value;
     }
 
-    public String getExpDate() {
+    public Date getExpDate() {
         return expDate;
     }
 
-    public void setExpDate(String expDate) {
+    public void setExpDate(Date expDate) {
         this.expDate = expDate;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         this.status = status;
     }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    @Override
-    public String toString() {
-        return this.name;
-    }
-    
-    
+      
 }

@@ -1,17 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import control.MainController;
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.Bill;
+import model.PayBill;
 import model.User;
 
 /**
@@ -34,7 +31,6 @@ public class Main extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         lblUser = new javax.swing.JLabel();
         lblBill = new javax.swing.JLabel();
-        lblAct = new javax.swing.JLabel();
         lblExit = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -53,13 +49,6 @@ public class Main extends javax.swing.JFrame {
         btnAddBill = new javax.swing.JButton();
         btnRemoveBill = new javax.swing.JButton();
         btnEditBill = new javax.swing.JButton();
-        jPanelAct = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tbAct = new javax.swing.JTable();
-        btnAddAct = new javax.swing.JButton();
-        btnRemoveAct = new javax.swing.JButton();
-        btnEditAct = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
@@ -90,17 +79,6 @@ public class Main extends javax.swing.JFrame {
             }
         });
         jPanel5.add(lblBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 12, -1, -1));
-
-        lblAct.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        lblAct.setForeground(new java.awt.Color(204, 204, 204));
-        lblAct.setText("Atividades");
-        lblAct.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        lblAct.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblActMouseClicked(evt);
-            }
-        });
-        jPanel5.add(lblAct, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 12, -1, -1));
 
         lblExit.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         lblExit.setForeground(new java.awt.Color(204, 204, 204));
@@ -226,7 +204,7 @@ public class Main extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "Valor", "Vencimento", "Responsável", "Status"
+                "Nome", "Valor", "Vencimento", "Status", "Responsável"
             }
         ));
         jScrollPane2.setViewportView(tbBill);
@@ -301,78 +279,6 @@ public class Main extends javax.swing.JFrame {
 
         painelCard.add(jPanelBill, "billCard");
 
-        jPanelAct.setBackground(new java.awt.Color(204, 204, 204));
-
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel7.setText("Atividades");
-
-        tbAct.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        tbAct.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Nome", "Inicio", "Fim", "Responsável", "Status"
-            }
-        ));
-        jScrollPane3.setViewportView(tbAct);
-
-        btnAddAct.setBackground(new java.awt.Color(153, 153, 153));
-        btnAddAct.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        btnAddAct.setForeground(new java.awt.Color(51, 51, 51));
-        btnAddAct.setText("Adicionar");
-        btnAddAct.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        btnRemoveAct.setBackground(new java.awt.Color(153, 153, 153));
-        btnRemoveAct.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        btnRemoveAct.setForeground(new java.awt.Color(51, 51, 51));
-        btnRemoveAct.setText("Excluir");
-        btnRemoveAct.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        btnEditAct.setBackground(new java.awt.Color(153, 153, 153));
-        btnEditAct.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        btnEditAct.setForeground(new java.awt.Color(51, 51, 51));
-        btnEditAct.setText("Alterar");
-        btnEditAct.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        javax.swing.GroupLayout jPanelActLayout = new javax.swing.GroupLayout(jPanelAct);
-        jPanelAct.setLayout(jPanelActLayout);
-        jPanelActLayout.setHorizontalGroup(
-            jPanelActLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelActLayout.createSequentialGroup()
-                .addGap(237, 237, 237)
-                .addComponent(jLabel7)
-                .addContainerGap(245, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelActLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelActLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelActLayout.createSequentialGroup()
-                        .addComponent(btnAddAct, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRemoveAct, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEditAct, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57))
-        );
-        jPanelActLayout.setVerticalGroup(
-            jPanelActLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelActLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addGroup(jPanelActLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAddAct)
-                    .addComponent(btnRemoveAct)
-                    .addComponent(btnEditAct))
-                .addContainerGap(44, Short.MAX_VALUE))
-        );
-
-        painelCard.add(jPanelAct, "actCard");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -409,19 +315,14 @@ public class Main extends javax.swing.JFrame {
     private void lblExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblExitMouseClicked
         System.exit(0);
     }//GEN-LAST:event_lblExitMouseClicked
-
-    private void lblActMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblActMouseClicked
-        CardLayout c1 = (CardLayout) (painelCard.getLayout());
-        c1.show(painelCard, "actCard");
-    }//GEN-LAST:event_lblActMouseClicked
     //User Panel
     public void loadTableUser() {
         DefaultTableModel dtb = (DefaultTableModel) tbUser.getModel();
         dtb.setNumRows(0);
         MainController main = new MainController();
-        ArrayList<User> dados = main.getDataUsers();
+        List<User> dados = main.getDataUsers();
 
-        for (User u : dados) {
+        for (User u : dados){
             dtb.addRow(new Object[]{u.getEmail(), u.getName(), u.getRg(), u.getPhone()});
         }
     }
@@ -451,23 +352,35 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um registro para editar", "Erro ao editar Usuario", JOptionPane.ERROR_MESSAGE);
         } else {
             main.editUser(tbUser.getValueAt(row, 0).toString(), this);
+            
         }
     }//GEN-LAST:event_btnEditUserActionPerformed
-
+    
     //Bill panel
     public void loadTableBill() {
         DefaultTableModel dtb = (DefaultTableModel) tbBill.getModel();
         dtb.setNumRows(0);
         MainController main = new MainController();
-        ArrayList<Bill> dados = main.getDataBills();
+        List<Bill> dados = main.getDataBills();
+        List<PayBill> payb = main.getDataPayBill();
+        
 
         for (Bill b : dados) {
-            dtb.addRow(new Object[]{b.getName(), b.getValue(), b.getExpDate(), b.getUserName(), b.getStatus()});
+            for (PayBill pb : payb) {
+                if((b.getName()).equals(pb.getNameBill())){
+                    if(b.getStatus() == 1)
+                        dtb.addRow(new Object[]{b.getName(), b.getValue(), b.getExpDate(), "Paga", pb.getNameUser()});
+                    else
+                        dtb.addRow(new Object[]{b.getName(), b.getValue(), b.getExpDate(), "Não Paga", pb.getNameUser()});  
+                }
+            }
         }
+        
     }
 
     private void btnAddBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBillActionPerformed
         AddBill add = new AddBill(this);
+        
         add.setVisible(true);
         loadTableBill();
     }//GEN-LAST:event_btnAddBillActionPerformed
@@ -491,6 +404,7 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um registro para editar", "Erro ao editar Usuario", JOptionPane.ERROR_MESSAGE);
         } else {
             main.editBill(tbBill.getValueAt(row, 0).toString(), this);
+            loadTableBill();
         }
     }//GEN-LAST:event_btnEditBillActionPerformed
 
@@ -527,33 +441,25 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddAct;
     private javax.swing.JButton btnAddBill;
     private javax.swing.JButton btnAddUser;
-    private javax.swing.JButton btnEditAct;
     private javax.swing.JButton btnEditBill;
     private javax.swing.JButton btnEditUser;
-    private javax.swing.JButton btnRemoveAct;
     private javax.swing.JButton btnRemoveBill;
     private javax.swing.JButton btnRemoveUser;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanelAct;
     private javax.swing.JPanel jPanelBill;
     private javax.swing.JPanel jPanelUser;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JLabel lblAct;
     private javax.swing.JLabel lblBill;
     private javax.swing.JLabel lblExit;
     private javax.swing.JLabel lblUser;
     private javax.swing.JPanel painelCard;
-    private javax.swing.JTable tbAct;
     private javax.swing.JTable tbBill;
     private javax.swing.JTable tbUser;
     // End of variables declaration//GEN-END:variables

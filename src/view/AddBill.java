@@ -1,13 +1,13 @@
 package view;
 
+import DAO.UserDao;
 import control.AddBillController;
 import control.MainController;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 import model.Bill;
+import model.PayBill;
 import model.User;
 
 /**
@@ -18,6 +18,7 @@ public class AddBill extends javax.swing.JFrame {
 
     Main mn;
     String name;
+    int id;
 
     public AddBill() {
         initComponents();
@@ -32,27 +33,38 @@ public class AddBill extends javax.swing.JFrame {
 
     public void loadCmbUsers() {
         MainController main = new MainController();
-        ArrayList<User> users = main.getDataUsers();
+        List<User> users = main.getDataUsers();
         for (int i = 0; i < users.size(); i++) {
             cmbUsers.addItem(users.get(i).getName());
         }
 
     }
 
-    public AddBill(String name, String value, String dateExp, String userName, String status, Main main) {
+    public AddBill(String name, String value, Date dateExp, int status, int id, Main main) {
         initComponents();
         loadCmbUsers();
-        cmbUsers.setSelectedItem(userName);
+        MainController mainC = new MainController();
+        List<Bill> dados = mainC.getDataBills();
+        List<PayBill> payb = mainC.getDataPayBill();
+        for (Bill b : dados) {
+            for (PayBill pb : payb) {
+                if (b.getName().equals(pb.getNameBill())) {
+                    cmbUsers.setSelectedItem(pb.getNameUser());
+                }
+            }
+        }
+
         txtName.setText(name);
         txtValue.setText(value);
-        txtDateExp.setText(dateExp);
-        if(status.equals("Paga")){
+        dtcExpDate.setDate(dateExp);
+        
+        if (status == 1) {
             cbStatus.setSelected(true);
         } else {
             cbStatus.setSelected(false);
         }
         btnSave.setText("Editar");
-
+        this.id = id;
         this.name = name;
         mn = main;
     }
@@ -69,8 +81,6 @@ public class AddBill extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        txtDateExp = new javax.swing.JTextField();
-        jSeparator2 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -78,6 +88,7 @@ public class AddBill extends javax.swing.JFrame {
         txtValue = new javax.swing.JTextField();
         cmbUsers = new javax.swing.JComboBox<>();
         cbStatus = new javax.swing.JCheckBox();
+        dtcExpDate = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,12 +136,6 @@ public class AddBill extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Usuário:");
 
-        txtDateExp.setBackground(new java.awt.Color(204, 204, 204));
-        txtDateExp.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        txtDateExp.setForeground(new java.awt.Color(102, 102, 102));
-        txtDateExp.setBorder(null);
-        txtDateExp.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
         jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Status:");
@@ -170,30 +175,31 @@ public class AddBill extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(cmbUsers, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtDateExp, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(cbStatus))
                                 .addGap(36, 36, 36)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel6)
                                     .addComponent(jSeparator5, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
                                     .addComponent(txtValue)))
-                            .addComponent(cbStatus))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(dtcExpDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cmbUsers, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -214,11 +220,9 @@ public class AddBill extends javax.swing.JFrame {
                     .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtDateExp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addComponent(dtcExpDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel3)
                 .addGap(21, 21, 21)
                 .addComponent(cmbUsers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -251,63 +255,47 @@ public class AddBill extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        String status;
-        if (cbStatus.isSelected()) {
-            status = "Paga";
-        } else {
-            status = "Não Paga";
-        }
-
-        AddBillController addBill = new AddBillController();
-        if (name == null) {
-            Bill b = new Bill(txtName.getText(), txtValue.getText(), txtDateExp.getText(), cmbUsers.getSelectedItem().toString(), status);
-            if (addBill.add(b)) {
-                JOptionPane.showMessageDialog(null, "Conta cadastrada com sucesso");
-                mn.loadTableBill();
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Conta não cadastrada", "Erro no cadastro", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            MainController mainController = new MainController();
-            ArrayList<Bill> contas = mainController.getDataBills();
-
-            for (Bill b : contas) {
-                if (b.getName().equals(name)) {
-                    b.setName(txtName.getText());
-                    b.setValue(txtValue.getText());
-                    b.setExpDate(txtDateExp.getText());
-                    b.setUserName(cmbUsers.getSelectedItem().toString());
-                    b.setStatus(status);
-                }
-            }
-
-            try {
-                File file = new File("C:\\Users\\JuliaNicolaGualeve\\Desktop\\ProjetoDesktop\\Bills.txt");
-                //zera arquivo .txt
-                BufferedWriter eb = new BufferedWriter(new FileWriter(file, false));
-                eb.write("");
-                eb.close();
-            } catch (Exception e) {
-                e.getMessage();
-            }
-
-            for (Bill b : contas) {
-                if (b.getName().equals(name) && addBill.add(b)) {
-                    JOptionPane.showMessageDialog(null, "Conta alterada com sucesso");
-                    mn.loadTableBill();
-                    return;
-                }
-
-                addBill.add(b);
-                mn.loadTableBill();
-                this.dispose();
-
-            }
-
+        int status;     
+        Bill bill = new Bill();
+        PayBill pb = new PayBill();
+        AddBillController addBillCont = new AddBillController();
+        getData(bill,pb);
+        if (addBillCont.addBill(bill, name, pb)) {
+            clear();
+            JOptionPane.showMessageDialog(null, "Conta cadastrada com sucesso");
+            mn.loadTableBill();
             this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Conta não cadastrada", "Erro no cadastro", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void clear() {
+        txtName.setText("");
+        txtValue.setText("");
+        dtcExpDate.setDate(null);
+        cmbUsers.setSelectedItem(null);
+        cbStatus.setSelected(false);
+    }
+
+    private void getData(Bill bill, PayBill pb) {
+        UserDao daoU = new UserDao();
+        bill.setName(txtName.getText());
+        bill.setValue(Float.parseFloat(txtValue.getText()));
+        bill.setExpDate(dtcExpDate.getDate());
+        if(cbStatus.isSelected()){
+            bill.setStatus(1);
+        } else {
+            bill.setStatus(0);
+        }
+        String name = (String) cmbUsers.getSelectedItem(); 
+        User u = daoU.searchByName(name);
+        pb.setNameUser(u.getName());
+        pb.setIdUser(u.getId());
+        pb.setIdBill(id);
+        bill.setId(id);
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -345,6 +333,7 @@ public class AddBill extends javax.swing.JFrame {
     private javax.swing.JButton btnSave;
     private javax.swing.JCheckBox cbStatus;
     private javax.swing.JComboBox<String> cmbUsers;
+    private com.toedter.calendar.JDateChooser dtcExpDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -354,10 +343,9 @@ public class AddBill extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTextField txtDateExp;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtValue;
     // End of variables declaration//GEN-END:variables
+
 }

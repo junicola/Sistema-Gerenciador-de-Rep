@@ -156,7 +156,7 @@ public class Login extends javax.swing.JFrame {
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
         String user = txtUser.getText();
-        String password = txtPassword.getText();
+        String password = String.valueOf(txtPassword.getPassword());
         Main main = new Main();
         LoginController login = new LoginController(password, user);
         if (login.validate() == true && user != null && password != null) {

@@ -1,19 +1,24 @@
 package model;
+
+import java.io.Serializable;
+
 /**
  *
  * @author JuliaNicolaGualeve
  */
 public class User {
+
     private String name;
     private String email;
     private String phone;
-    private String rg;
+    private int rg;
     private String Password;
+    private int id;
 
     public User() {
     }
-    
-    public User(String email, String nome, String password, String rg, String tel) {
+
+    public User(String email, String nome, String password, int rg, String tel) {
         this.email = email;
         this.name = nome;
         this.Password = password;
@@ -21,7 +26,22 @@ public class User {
         this.phone = tel;
     }
 
-    
+    public int getRg() {
+        return rg;
+    }
+
+    public void setRg(int rg) {
+        this.rg = rg;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -46,20 +66,12 @@ public class User {
         this.phone = phone;
     }
 
-    public String getRg() {
-        return rg;
-    }
-
-    public void setRg(String rg) {
-        this.rg = rg;
-    }
-
     public String getPassword() {
         return Password;
     }
 
     public void setPassword(String Password) {
         this.Password = Password;
-    } 
-    
+    }
+
 }

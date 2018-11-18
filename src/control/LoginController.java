@@ -1,5 +1,6 @@
 package control;
 
+import DAO.UserDao;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -15,7 +16,7 @@ import model.User;
 public class LoginController {
     String password;
     String user;
-    File file = new File("C:\\Users\\JuliaNicolaGualeve\\Desktop\\ProjetoDesktop\\Users.txt");
+    File file = new File("C:\\Users\\JuliaNicolaGualeve\\Desktop\\repClone\\Sistema-Gerenciador-de-Rep\\Users.bi");
 
     public LoginController(String password, String user) {
         this.password = password;
@@ -31,30 +32,11 @@ public class LoginController {
     }
     
     public boolean validate(){
-        List<String> lista = readFile();
-        for(String lst : lista){
-            String[] sl = lst.split(";");
-            if(sl[0].equals(user) && sl[2].equals(password))
-                return true;
-        }
-        
-        return false;
-    }
-    
-    public List readFile(){
-        List resultado = new ArrayList();
-        String linha = "";
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            while ((linha = br.readLine()) != null ) {
-                resultado.add(linha);
-            }
-            br.close();
-        } catch (IOException erro) {
-            System.err.println("Erro na leitura do arquivo. " + erro);
-        } finally {
-            return resultado;
-        }
+        UserDao userDao = new UserDao();
+        if(userDao.autenticLogin(user, password))
+            return true;
+        else
+            return false;
     }
         
 }
